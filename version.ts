@@ -29,3 +29,7 @@ export function incrementPatch({major, minor, patch}: Version): Version {
 export function incrementMinor({major, minor}: Version): Version {
     return {major, minor: minor + 1, patch: 0, pre: [], build: []};
 }
+
+export function incrementMajor({major}: Version): Version {
+    return {major: major + 1, minor: 0, patch: 0, pre: [], build: []};
+}
