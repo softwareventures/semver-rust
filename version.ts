@@ -17,3 +17,7 @@ export function format({major, minor, patch, pre, build}: Version): string {
             : "+" + build.join(".")
     }`;
 }
+
+export function withoutMetadata({major, minor, patch}: Version): Version {
+    return {major, minor, patch, pre: [], build: []};
+}
