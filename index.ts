@@ -1,1 +1,1 @@
-export {Version, format} from "./version";
+export {Version, format, withoutMetadata} from "./version";
