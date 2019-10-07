@@ -1,5 +1,5 @@
 import test from "ava";
-import {format, incrementMajor, incrementMinor, incrementPatch, withoutMetadata} from "./version";
+import {format, incrementMajor, incrementMinor, incrementPatch, isPrerelease, withoutMetadata} from "./version";
 
 test("format", t => {
     t.is(format({major: 1, minor: 2, patch: 3, pre: [], build: []}), "1.2.3");
@@ -43,4 +43,12 @@ test("incrementMajor", t => {
         {major: 3, minor: 0, patch: 0, pre: [], build: []});
     t.deepEqual(incrementMajor({major: 0, minor: 9, patch: 2, pre: [], build: ["softwareventures"]}),
         {major: 1, minor: 0, patch: 0, pre: [], build: []});
+});
+
+test("isPrerelease", t => {
+    t.is(isPrerelease({major: 1, minor: 2, patch: 3, pre: [], build: []}), false);
+    t.is(isPrerelease({major: 2, minor: 3, patch: 4, pre: ["2", "development"], build: []}), true);
+    t.is(isPrerelease({major: 0, minor: 9, patch: 2, pre: [], build: ["softwareventures"]}), false);
+    t.is(isPrerelease({major: 5, minor: 2, patch: 242, pre: ["2342", "9852", "beta"], build: ["complico", "8", "9"]}),
+        true);
 });

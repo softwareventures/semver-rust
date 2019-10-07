@@ -33,3 +33,7 @@ export function incrementMinor({major, minor}: Version): Version {
 export function incrementMajor({major}: Version): Version {
     return {major: major + 1, minor: 0, patch: 0, pre: [], build: []};
 }
+
+export function isPrerelease({pre}: Version): boolean {
+    return pre.length > 0;
+}
