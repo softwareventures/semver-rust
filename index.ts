@@ -1,1 +1,1 @@
-export {Version, format, withoutMetadata} from "./version";
+export {Version, format, incrementMajor, incrementMinor, incrementPatch, withoutMetadata} from "./version";
