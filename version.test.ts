@@ -1,5 +1,5 @@
 import test from "ava";
-import {format, withoutMetadata} from "./version";
+import {format, incrementMajor, incrementMinor, incrementPatch, withoutMetadata} from "./version";
 
 test("format", t => {
     t.is(format({major: 1, minor: 2, patch: 3, pre: [], build: []}), "1.2.3");
@@ -16,4 +16,31 @@ test("withoutMetadata", t => {
         {major: 2, minor: 3, patch: 4, pre: [], build: []});
     t.deepEqual(withoutMetadata({major: 0, minor: 9, patch: 2, pre: [], build: ["softwareventures"]}),
         {major: 0, minor: 9, patch: 2, pre: [], build: []});
+});
+
+test("incrementPatch", t => {
+    t.deepEqual(incrementPatch({major: 1, minor: 2, patch: 3, pre: [], build: []}),
+        {major: 1, minor: 2, patch: 4, pre: [], build: []});
+    t.deepEqual(incrementPatch({major: 2, minor: 3, patch: 4, pre: ["2", "development"], build: []}),
+        {major: 2, minor: 3, patch: 5, pre: [], build: []});
+    t.deepEqual(incrementPatch({major: 0, minor: 9, patch: 2, pre: [], build: ["softwareventures"]}),
+        {major: 0, minor: 9, patch: 3, pre: [], build: []});
+});
+
+test("incrementMinor", t => {
+    t.deepEqual(incrementMinor({major: 1, minor: 2, patch: 3, pre: [], build: []}),
+        {major: 1, minor: 3, patch: 0, pre: [], build: []});
+    t.deepEqual(incrementMinor({major: 2, minor: 3, patch: 4, pre: ["2", "development"], build: []}),
+        {major: 2, minor: 4, patch: 0, pre: [], build: []});
+    t.deepEqual(incrementMinor({major: 0, minor: 9, patch: 2, pre: [], build: ["softwareventures"]}),
+        {major: 0, minor: 10, patch: 0, pre: [], build: []});
+});
+
+test("incrementMajor", t => {
+    t.deepEqual(incrementMajor({major: 1, minor: 2, patch: 3, pre: [], build: []}),
+        {major: 2, minor: 0, patch: 0, pre: [], build: []});
+    t.deepEqual(incrementMajor({major: 2, minor: 3, patch: 4, pre: ["2", "development"], build: []}),
+        {major: 3, minor: 0, patch: 0, pre: [], build: []});
+    t.deepEqual(incrementMajor({major: 0, minor: 9, patch: 2, pre: [], build: ["softwareventures"]}),
+        {major: 1, minor: 0, patch: 0, pre: [], build: []});
 });
