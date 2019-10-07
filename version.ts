@@ -25,3 +25,7 @@ export function withoutMetadata({major, minor, patch}: Version): Version {
 export function incrementPatch({major, minor, patch}: Version): Version {
     return {major, minor, patch: patch + 1, pre: [], build: []};
 }
+
+export function incrementMinor({major, minor, patch}: Version): Version {
+    return {major, minor: minor + 1, patch: 0, pre: [], build: []};
+}
