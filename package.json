@@ -3,7 +3,11 @@
   "name": "semver-rust",
   "version": "0.0.0-development",
   "description": "Rust-compatible alternative implementation of semver",
-  "keywords": ["semver", "rust", "cargo"],
+  "keywords": [
+    "semver",
+    "rust",
+    "cargo"
+  ],
   "author": "Daniel Cassidy <mail@danielcassidy.me.uk>",
   "homepage": "https://github.com/softwareventures/semver-rust",
   "bugs": "https://github.com/softwareventures/semver-rust",
@@ -21,7 +25,7 @@
   "devDependencies": {
     "@softwareventures/tsconfig": "2.1.0",
     "@softwareventures/tslint-rules": "0.7.1",
-    "ava": "2.4.0",
+    "ava": "3.1.0",
     "cz-conventional-changelog": "3.1.0",
     "semantic-release": "17.0.1",
     "ts-node": "8.6.2",
@@ -34,7 +38,6 @@
     }
   },
   "ava": {
-    "compileEnhancements": false,
     "extensions": [
       "ts"
     ],
